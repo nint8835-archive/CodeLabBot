@@ -1,0 +1,31 @@
+{
+  "name": "codelabbot",
+  "version": "1.0.0",
+  "description": "Discord bot providing code analysis and execution",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "npm run build && node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nint8835/CodeLabBot.git"
+  },
+  "author": "nint8835",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nint8835/CodeLabBot/issues"
+  },
+  "homepage": "https://github.com/nint8835/CodeLabBot#readme",
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "eslint": "^6.7.2",
+    "@typescript-eslint/eslint-plugin": "^2.9.0",
+    "@typescript-eslint/parser": "^2.9.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}
