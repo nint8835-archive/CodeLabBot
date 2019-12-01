@@ -1,6 +1,7 @@
 import Commando from 'discord.js-commando';
 import { config as configDotenv } from 'dotenv';
 import { Message } from 'discord.js';
+import { VM } from 'vm2';
 import eslintCode from './utils';
 
 configDotenv();
@@ -17,6 +18,19 @@ client.on('message', async (message: Message) => {
     const eslintOutput = await eslintCode(code);
     if (eslintOutput) {
       message.reply(eslintOutput);
+    }
+
+    if (code.indexOf('// codelab eval') !== -1) {
+      const vm = new VM({
+        timeout: 1000,
+      });
+      try {
+        message.reply(['', '```js', vm.run(code), '```'].join('\n'));
+      } catch (e) {
+        if (e instanceof Error) {
+          message.reply(['', '```', e.message, '```'].join('\n'));
+        }
+      }
     }
   }
 });
