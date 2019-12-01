@@ -1,10 +1,12 @@
 import Commando from 'discord.js-commando';
 import { config as configDotenv } from 'dotenv';
-import { Message } from 'discord.js';
+import { Message, GuildChannel } from 'discord.js';
 import { VM } from 'vm2';
 import eslintCode from './utils';
 
 configDotenv();
+
+const EVAL_ENABLED_SERVERS = ['497544520695808000'];
 
 const javascriptBlockRegex = /(`(?:``))(?:(?:js|javascript)\n|\n)((?:.|\n)*)(?:\1)/;
 
@@ -20,7 +22,11 @@ client.on('message', async (message: Message) => {
       message.reply(eslintOutput);
     }
 
-    if (code.indexOf('// codelab eval') !== -1) {
+    if (
+      code.indexOf('// codelab eval') !== -1
+      && message.channel instanceof GuildChannel
+      && EVAL_ENABLED_SERVERS.includes(message.guild.id)
+    ) {
       const vm = new VM({
         timeout: 1000,
       });
