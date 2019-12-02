@@ -18,7 +18,7 @@ client.on('message', async (message: Message) => {
   if (matches !== null && !message.author.bot) {
     const code = matches[2];
     const eslintOutput = await eslintCode(code);
-    if (eslintOutput) {
+    if (eslintOutput && eslintOutput.indexOf('Parsing error') !== -1) {
       message.reply(eslintOutput);
     }
 
