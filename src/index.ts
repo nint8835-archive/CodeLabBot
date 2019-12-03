@@ -8,7 +8,7 @@ configDotenv();
 
 const EVAL_ENABLED_SERVERS = ['497544520695808000'];
 
-const javascriptBlockRegex = /(`(?:``))(?:(?:js|javascript)\n|\n)((?:.|\n)*)(?:\1)/;
+const javascriptBlockRegex = /(`(?:``))(?:js|javascript|ts|typescript)\n((?:.|\n)*)(?:\1)/;
 
 const client = new Commando.CommandoClient({
   owner: '106162668032802816',
@@ -18,7 +18,7 @@ client.on('message', async (message: Message) => {
   if (matches !== null && !message.author.bot) {
     const code = matches[2];
     const eslintOutput = await eslintCode(code);
-    if (eslintOutput && eslintOutput.indexOf('Parsing error') !== -1) {
+    if (eslintOutput) {
       message.reply(eslintOutput);
     }
 
