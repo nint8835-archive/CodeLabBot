@@ -33,6 +33,6 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "sqlite": "^3.0.3",
-    "vm2": "^3.8.4"
+    "vm2": "^3.9.6"
   }
 }
